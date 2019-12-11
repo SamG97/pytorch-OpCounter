@@ -128,3 +128,10 @@ def count_linear(m, x, y):
     total_ops = (total_mul + total_add) * num_elements
 
     m.total_ops += torch.Tensor([int(total_ops)])
+
+
+def count_gru(m, x, y):
+    x = x[0]
+    T, N, S = x.shape
+
+    m.total_ops += torch.Tensor([int(T * N * S * (6 * S + 11))])
